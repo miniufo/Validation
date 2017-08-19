@@ -16,31 +16,35 @@ import miniufo.util.DataInterpolation;
 //
 public final class KeffTest{
 	//
+	private static final boolean adjust=false;
+	
+	private static final int interp=1;
+	
 	private static final String path="D:/Data/Validate/Keff/";
 	
 	//
 	public static void main(String[] args){
 		//generateTracers(); System.exit(0);
 		
-		//cCartesianKeffs("Linear",200);
-		//cCartesianKeffs("Linear2",400);
-		//cCartesianKeffs("Linear4",800);
-		//cCartesianKeffs("Sin",200);
-		//cCartesianKeffs("Sin2",400);
-		//cCartesianKeffs("Sin4",800);
+		cCartesianKeffs("Linear",200);
+		cCartesianKeffs("Linear2",400);
+		cCartesianKeffs("Linear4",800);
+		cCartesianKeffs("Sin",200);
+		cCartesianKeffs("Sin2",400);
+		cCartesianKeffs("Sin4",800);
 		
-		//cSphericalKeffs("Linear",181);
-		//cSphericalKeffs("Linear2",361);
-		//cSphericalKeffs("Linear4",721);
-		//cSphericalKeffs("Sin",181);
-		//cSphericalKeffs("Sin2",361);
-		//cSphericalKeffs("Sin4",721);
+		cSphericalKeffs("Linear",181);
+		cSphericalKeffs("Linear2",361);
+		cSphericalKeffs("Linear4",721);
+		cSphericalKeffs("Sin",181);
+		cSphericalKeffs("Sin2",361);
+		cSphericalKeffs("Sin4",721);
 		
 		//interpPVData(2);
 		cPVKeffs("PV" ,241);
-		//cPVKeffs("PV2",481);
-		//cPVKeffs("PV4",961);
-		//cPVKeffs("PV8",1921);
+		cPVKeffs("PV2",481);
+		cPVKeffs("PV4",961);
+		cPVKeffs("PV8",1921);
 	}
 	
 	
@@ -66,7 +70,9 @@ public final class KeffTest{
 		for(Variable v:v2) v.setName(v.getName()+"c161");
 		for(Variable v:v3) v.setName(v.getName()+"c321");
 		
-		CtlDataWriteStream cdws=new CtlDataWriteStream(path+"PVTrue/"+fname+"Keffs.dat");
+		String suffix=adjust?"Adj":"";
+		
+		CtlDataWriteStream cdws=new CtlDataWriteStream(path+"PVTrue/"+fname+"Keffs"+suffix+".dat");
 		cdws.writeData(dd,ArrayUtil.concatAll(Variable.class,v0,v1,v2,v3));
 		cdws.closeFile();
 	}
@@ -77,7 +83,7 @@ public final class KeffTest{
 		Variable pv=df.getVariables(new Range("t(1,1)",dd),"pv")[0].multiplyEq(1e6f);
 		
 		ContourSphericalSpatialModel cc=new ContourSphericalSpatialModel(dd);
-		cc.initContourByTracer(pv,qnum,1,true);System.out.println(cc.getContours()[0][0]);
+		cc.initContourByTracer(pv,qnum,interp,adjust);System.out.println(cc.getContours()[0][0]);
 		
 		KeffInSC keffSC=new KeffInSC(cc);
 		
@@ -120,7 +126,9 @@ public final class KeffTest{
 		for(Variable v:v2) v.setName(v.getName()+"c61" );
 		for(Variable v:v3) v.setName(v.getName()+"c101");
 		
-		CtlDataWriteStream cdws=new CtlDataWriteStream(path+"Cartesian/"+fname+"Keffs.dat");
+		String suffix=adjust?"Adj":"";
+		
+		CtlDataWriteStream cdws=new CtlDataWriteStream(path+"Cartesian/"+fname+"Keffs"+suffix+".dat");
 		cdws.writeData(dd,ArrayUtil.concatAll(Variable.class,v0,v1,v2,v3));
 		cdws.closeFile();
 	}
@@ -131,7 +139,7 @@ public final class KeffTest{
 		Variable pv=df.getVariables(new Range("t(1,1)",dd),"q")[0];
 		
 		ContourCartesianSpatialModel cc=new ContourCartesianSpatialModel((CtsDescriptor)dd);
-		cc.initContourByTracer(pv,qnum,1,true);System.out.println(cc.getContours()[0][0]);
+		cc.initContourByTracer(pv,qnum,interp,adjust);System.out.println(cc.getContours()[0][0]);
 		
 		KeffInCTS keffSC=new KeffInCTS(cc);
 		
@@ -174,7 +182,9 @@ public final class KeffTest{
 		for(Variable v:v2) v.setName(v.getName()+"c61" );
 		for(Variable v:v3) v.setName(v.getName()+"c101");
 		
-		CtlDataWriteStream cdws=new CtlDataWriteStream(path+"Spherical/"+fname+"Keffs.dat");
+		String suffix=adjust?"Adj":"";
+		
+		CtlDataWriteStream cdws=new CtlDataWriteStream(path+"Spherical/"+fname+"Keffs"+suffix+".dat");
 		cdws.writeData(dd,ArrayUtil.concatAll(Variable.class,v0,v1,v2,v3));
 		cdws.closeFile();
 	}
@@ -185,7 +195,7 @@ public final class KeffTest{
 		Variable pv=df.getVariables(new Range("t(1,1)",dd),"q")[0];
 		
 		ContourSphericalSpatialModel cc=new ContourSphericalSpatialModel(dd);
-		cc.initContourByTracer(pv,qnum,1,true);System.out.println(cc.getContours()[0][0]);
+		cc.initContourByTracer(pv,qnum,interp,adjust);System.out.println(cc.getContours()[0][0]);
 		
 		KeffInSC keffSC=new KeffInSC(cc);
 		

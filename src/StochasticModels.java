@@ -104,7 +104,7 @@ public final class StochasticModels{
 		System.out.println("\nLagrangian Statistics...");
 		LagrangianStatisticsByDavis lstat=new LagrangianStatisticsByDavis(ps,dd);
 		
-		Predicate<Record> cond=r->region.inRange(r.getLon(),r.getLat());
+		Predicate<Record> cond=r->region.inRange(r.getXPos(),r.getYPos());
 		
 		lstat.cStatisticsByDavisTheory1(cond,tRad).toFile(path+"Diff/Lstat"+tag+"1.txt");
 		lstat.cStatisticsByDavisTheory2(cond,tRad).toFile(path+"Diff/Lstat"+tag+"2.txt");

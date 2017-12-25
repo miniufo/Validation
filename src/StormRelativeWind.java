@@ -19,7 +19,7 @@ public final class StormRelativeWind{
 	public static void main(String[] args){
 		DiagnosisFactory df=DiagnosisFactory.parseFile("d:/Data/DiagnosisVortex/Haima/Haima.csm");
 		CsmDescriptor csd=(CsmDescriptor)df.getDataDescriptor();
-		CylindricalSpatialModel csm=(CylindricalSpatialModel)df.getSpatialModel();
+		CylindricalSpatialModel csm=new CylindricalSpatialModel(csd);
 		SphericalSpatialModel ssm=new SphericalSpatialModel(csd.getCtlDescriptor());
 		
 		Range range=new Range("",csd);

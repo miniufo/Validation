@@ -106,8 +106,8 @@ public final class StochasticModels{
 		
 		Predicate<Record> cond=r->region.inRange(r.getXPos(),r.getYPos());
 		
-		lstat.cStatisticsByDavisTheory1(cond,tRad).toFile(path+"Diff/Lstat"+tag+"1.txt");
-		lstat.cStatisticsByDavisTheory2(cond,tRad).toFile(path+"Diff/Lstat"+tag+"2.txt");
-		lstat.cStatisticsByDavisTheory3(cond,tRad).toFile(path+"Diff/Lstat"+tag+"3.txt");
+		lstat.cStatisticsByDavisTheory     (cond,tRad).toFile(path+"Diff/Lstat"+tag+"1.txt");
+		lstat.cStatisticsByTaylorTheory    (cond,tRad).toFile(path+"Diff/Lstat"+tag+"2.txt");
+		lstat.cStatisticsByDispersionTheory(cond,tRad).toFile(path+"Diff/Lstat"+tag+"3.txt");
 	}
 }

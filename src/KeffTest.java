@@ -83,7 +83,7 @@ public final class KeffTest{
 		Variable pv=df.getVariables(new Range("t(1,1)",dd),"pv")[0].multiplyEq(1e6f);
 		
 		ContourSphericalSpatialModel cc=new ContourSphericalSpatialModel(dd);
-		cc.initContourByTracer(pv,qnum,interp,adjust);System.out.println(cc.getContours()[0][0]);
+		cc.initContourByTracer(pv,qnum,interp,true,adjust);System.out.println(cc.getContours()[0][0]);
 		
 		KeffInSC keffSC=new KeffInSC(cc);
 		
@@ -139,7 +139,7 @@ public final class KeffTest{
 		Variable pv=df.getVariables(new Range("t(1,1)",dd),"q")[0];
 		
 		ContourCartesianSpatialModel cc=new ContourCartesianSpatialModel((CtsDescriptor)dd);
-		cc.initContourByTracer(pv,qnum,interp,adjust);System.out.println(cc.getContours()[0][0]);
+		cc.initContourByTracer(pv,qnum,interp,true,adjust);System.out.println(cc.getContours()[0][0]);
 		
 		KeffInCTS keffSC=new KeffInCTS(cc);
 		
@@ -195,7 +195,7 @@ public final class KeffTest{
 		Variable pv=df.getVariables(new Range("t(1,1)",dd),"q")[0];
 		
 		ContourSphericalSpatialModel cc=new ContourSphericalSpatialModel(dd);
-		cc.initContourByTracer(pv,qnum,interp,adjust);System.out.println(cc.getContours()[0][0]);
+		cc.initContourByTracer(pv,qnum,interp,true,adjust);System.out.println(cc.getContours()[0][0]);
 		
 		KeffInSC keffSC=new KeffInSC(cc);
 		
